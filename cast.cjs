@@ -32,11 +32,23 @@ program
   .argument("[filename]", 'file with the original code')
   .option("-o, --output <filename>", "file name of the JS input program")
   .option("-p, --program <JSprogram>", "JS input program")
+  .option("-d --depth <number>", "depth <number> Specifies the number of times to recurse while formatting object. This is useful for inspecting large objects", null)
+  .option("-c --colors", "If true, the output is styled with ANSI color codes", false)
+  .option("-z --compact", "The most 3 inner elements are united on a single line")
   .action((filename, options) => {
-    if (options.program) main(options.program, options);
+    if (options.program) {
+      main(options.program, options);
+      process.exit(0);
+    }
     else if (filename) {
-      let code = fs.readFileSync(filename);
-      main(code, options);
+      try {
+        let code = fs.readFileSync(filename);
+        main(code, options); 
+        process.exit(0); 
+      } catch (e) {
+        console.error(e.message);
+        process.exit(1);
+      }
     }
     else program.help()
   });
@@ -66,7 +78,8 @@ function main(code, options) {
     }
   });
 
-  let stringast = util.inspect(past.cast, { depth: null });
+  let stringast = util.inspect(past.cast, options);
+  //console.log("options at line 78",options);
   if (options?.output) {
     fs.writeFileSync(options.output, stringast);
   } else {
