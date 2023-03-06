@@ -1,3 +1,5 @@
+## Synopsis
+
 Outputs a compact string representation of the espree AST of an input program.
 
 Example:
@@ -18,3 +20,6 @@ Example:
   ]
 ]
 ```
+## See Also
+
+* [inspect-ast](https://www.npmjs.com/package/inspect-ast)

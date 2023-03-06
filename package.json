@@ -13,7 +13,21 @@
     "ast-types": "*",
     "espree": "*"
   },
-  "keywords": [ "espree", "ast-types", "ull", "compilers"],
+  "keywords": [
+    "espree",
+    "ast",
+    "ast-types",
+    "ull",
+    "compilers"
+  ],
   "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ULL-ESIT-PL/compact-js-ast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ULL-ESIT-PL/compact-js-ast/issues"
+  },
+  "homepage": "https://github.com/ULL-ESIT-PL/compact-js-ast#readme"
 }
