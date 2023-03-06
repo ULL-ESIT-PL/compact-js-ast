@@ -3,7 +3,7 @@
 Outputs a compact string representation of the espree AST of an input program.
 
 ```
-casiano@sanclemente-2 compact-js-ast % ./cast.cjs -h                    
+casiano@sanclemente-2 compact-js-ast % compast -h                    
 Usage: cast [options] [filename]
 
 Arguments:
@@ -20,10 +20,16 @@ Options:
   -h, --help                 display help for command
 ```
 
+## Install
+
+```
+npm i -g compact-js-ast
+```
+
 ## Example
 
 ```js
- ./cast.cjs -p 'while (x == 1) {}'
+ compast -p 'while (x == 1) {}'
 [
   'Program',
   [
