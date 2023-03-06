@@ -4,7 +4,7 @@ Outputs a compact string representation of the espree AST of an input program.
 
 ```
 casiano@sanclemente-2 compact-js-ast % compast -h                    
-Usage: cast [options] [filename]
+Usage: compast [options] [filename]
 
 Arguments:
   filename                   file with the original code
