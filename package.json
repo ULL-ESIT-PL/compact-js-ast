@@ -4,7 +4,7 @@
   "description": "Outputs a compact string representation of the espree AST of a JS input program",
   "main": "cast.cjs",
   "bin": {
-    "cast": "cast.cjs"
+    "compast": "./cast.cjs"
   },
   "scripts": {
     "test": "echo Error: no test specified"
