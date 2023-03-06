@@ -12,7 +12,7 @@
   "dependencies": {
     "ast-types": "*",
     "espree": "*"
-  }
+  },
   "keywords": [ "espree", "ast-types", "ull", "compilers"],
   "author": "Casiano Rodriguez Leon <crguezl@ull.edu.es> (https://crguezl.github.io/)",
   "license": "ISC"
