@@ -20,6 +20,17 @@ Options:
   -h, --help                 display help for command
 ```
 
+Here is another example:
+
+```js
+casiano@sanclemente-2 compact-js-ast % ./cast.cjs example.js -zc -d 3
+[ 'Program',
+  [ 'IfStatement',
+    [ 'Literal', true ],
+    [ 'ExpressionStatement', [ 'AssignmentExpression', '=', [Array], [Array] ] ],
+    [ 'ExpressionStatement', [ 'AssignmentExpression', '=', [Array], [Array] ] ] ] ]
+```
+
 ## Install
 
 ```
