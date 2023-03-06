@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // outputs a compact string representation of the AST. Example:
 // ✗ node cast3.cjs 'while (x == 1) {}' 0
 // [
