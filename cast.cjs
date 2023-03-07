@@ -88,7 +88,6 @@ function main(code, options) {
   });
 
   let stringast = util.inspect(past.cast, options);
-  //console.log("options at line 78",options);
   if (options?.output) {
     fs.writeFileSync(options.output, stringast);
   } else {
