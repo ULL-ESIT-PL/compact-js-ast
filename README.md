@@ -37,7 +37,9 @@ casiano@sanclemente-2 compact-js-ast % ./cast.cjs example.js -zc -d 3
 npm i -g compact-js-ast
 ```
 
-## Example
+## Examples
+
+Geting the input for the argument:
 
 ```js
  compast -p 'while (x == 1) {}'
@@ -54,6 +56,12 @@ npm i -g compact-js-ast
     [ 'BlockStatement' ]
   ]
 ]
+```
+
+Compressed, only depth 2 and output in file `salida.js`:
+
+```
+✗ compast -zd 2 cast.cjs -o salida.js
 ```
 
 ## See Also
