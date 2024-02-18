@@ -5,7 +5,7 @@ a summarized version of the AST of a given JavaScript program. The output can be
 
 ```
 $ compast -h                    
-Usage: compast [options] [filename]
+Usage: cast [options] [filename]
 
 Arguments:
   filename                    file with the original code
@@ -14,7 +14,9 @@ Options:
   -V, --version               output the version number
   -o, --output <filename>     file name of the JS input program
   -p, --program <JS program>  JS program is given in the command line
-  -w --whites <string>        string '  ' Specifies the number of whites for formatting the object (default: "  ")
+  -jw --whites <string>       string '  ' Specifies the number of whites for formatting the object (default: "  ")
+  -e --hide <fieldnames...>   List of AST fields to omit (default: [])
+  -f --hideFile <fileName>    File with a line per AST fields to omit
   -j --json                   output in JSON format (default is YML
   -h, --help                  display help for command
 ```
@@ -100,3 +102,4 @@ body:
       arguments:
         - type: "Literal"
 ```
+
