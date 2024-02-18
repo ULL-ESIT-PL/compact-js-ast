@@ -14,8 +14,8 @@ program
   .argument("[filename]", 'file with the original code')
   .option("-o, --output <filename>", "file name of the JS input program")
   .option("-p, --program <JS program>", "JS program is given in the command line")
-  .option("-w --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
-  .option("-e --hide <fieldnames...>", "List of ast fields to omit", [])
+  .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
+  .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
   .option("-j --json", "output in JSON format (default is YML")
   .action((filename, options) => {
     if (options.program) {
