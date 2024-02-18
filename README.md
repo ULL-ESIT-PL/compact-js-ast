@@ -1,6 +1,7 @@
 ## Synopsis
 
-Outputs a compact string representation of the espree AST of an input program.
+Outputs a compact string representation of the espree AST of an input program. It provides an executable `compast` that can be used to output 
+a summarized version of the AST of a given JavaScript program. The output can be in YML or JSON format. The program can be given as a file or as a string in the command line.
 
 ```
 $ compast -h                    
@@ -48,8 +49,10 @@ body:
           value: 4
 ```
 
+```
+$ compast -jp 'a.b(4)'
+```
 ```json
-✗ ./cast.cjs -jp 'a.b(4)'
 {
   "type": "Program",
   "body": [
@@ -79,4 +82,21 @@ body:
   ]
 }
 ```
+Same, but removing `names`s and `value`s:
 
+```yml
+$ compast -e name value -p 'a.b(4)' 
+type: "Program"
+body:
+  - type: "ExpressionStatement"
+    expression:
+      type: "CallExpression"
+      callee:
+        type: "MemberExpression"
+        object:
+          type: "Identifier"
+        property:
+          type: "Identifier"
+      arguments:
+        - type: "Literal"
+```
