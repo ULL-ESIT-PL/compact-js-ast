@@ -1,23 +1,24 @@
+const fs = require('fs');
 const YAML = require('json-to-pretty-yaml');
 const espree = require("espree");
 
 const omit = new Set([
-    "loc", 
-    "range", 
-    "start", 
-    "end", 
+    "loc",
+    "range",
+    "start",
+    "end",
     "computed",
     "optional",
     "sourceType",
-    "tokens", 
-    "comments", 
-    "leadingComments", 
-    "trailingComments", 
-    "innerComments", 
-    "extra", 
-    "raw", 
-    "rawValue", 
-    "errors", 
+    "tokens",
+    "comments",
+    "leadingComments",
+    "trailingComments",
+    "innerComments",
+    "extra",
+    "raw",
+    "rawValue",
+    "errors",
     "error"]);
 
 function replace(key, value) {
@@ -26,10 +27,21 @@ function replace(key, value) {
 }
 
 module.exports = function (code, options) {
-    
+
     options.hide.forEach(element => {
         omit.add(element);
     });
+
+    if (options.hideFile) {
+        try {
+            let fields = fs.readFileSync(options.hideFile, 'utf8').split('\n');
+            fields.forEach(element => {
+                omit.add(element);
+            });
+        } catch (e) {
+            console.warn(e.message);
+        }
+    }
 
     let ast = espree.parse(code, {
         ecmaVersion: espree.latestEcmaVersion,

@@ -16,6 +16,7 @@ program
   .option("-p, --program <JS program>", "JS program is given in the command line")
   .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
   .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
+  .option("-f --hideFile <fileName>", "File with a line per AST fields to omit")
   .option("-j --json", "output in JSON format (default is YML")
   .action((filename, options) => {
     if (options.program) {
