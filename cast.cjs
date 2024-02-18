@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const espree = require("espree");
-const astTypes = require("ast-types");
 
 let {
   program
@@ -9,9 +8,6 @@ let {
 const {
   version
 } = require("./package.json");
-
-let abbreviate = [];
-
 
 program
   .version(version)
