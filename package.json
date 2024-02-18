@@ -1,6 +1,6 @@
 {
   "name": "compact-js-ast",
-  "version": "2.1.5",
+  "version": "3.0.0",
   "description": "Outputs a compact string representation of the espree AST of a JS input program",
   "main": "cast.cjs",
   "bin": {
@@ -10,9 +10,8 @@
     "test": "echo Error: no test specified"
   },
   "dependencies": {
-    "ast-types": "*",
     "commander": "*",
-    "espree": "*"
+    "json-to-pretty-yaml": "^1.2.2"
   },
   "keywords": [
     "espree",
