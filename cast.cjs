@@ -1,24 +1,7 @@
 #!/usr/bin/env node
- // outputs a compact string representation of the AST. Example:
-// ✗ node cast3.cjs 'while (x == 1) {}' 0
-// [
-//   'Program',
-//   [
-//     'WhileStatement',
-//     [
-//       'BinaryExpression',
-//       '==',
-//       [ 'Identifier', 'x' ],
-//       [ 'Literal', 1 ]
-//     ],
-//     [ 'BlockStatement' ]
-//   ]
-// ]
-const util = require("util");
 const fs = require("fs");
 const espree = require("espree");
 const astTypes = require("ast-types");
-const NodePath = astTypes.NodePath;
 
 let {
   program
@@ -27,14 +10,15 @@ const {
   version
 } = require("./package.json");
 
+let abbreviate = [];
+
+
 program
   .version(version)
   .argument("[filename]", 'file with the original code')
   .option("-o, --output <filename>", "file name of the JS input program")
-  .option("-p, --program <JSprogram>", "JS input program")
-  .option("-d --depth <number>", "depth <number> Specifies the number of times to recurse while formatting object. This is useful for inspecting large objects", null)
-  .option("-c --colors", "If true, the output is styled with ANSI color codes", false)
-  .option("-z --compact", "The most 3 inner elements are united on a single line")
+  .option("-p, --program <JS program>", "JS program is given in the command line")
+  .option("-w --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
   .action((filename, options) => {
     if (options.program) {
       main(options.program, options);
@@ -56,49 +40,26 @@ program
 program.parse(process.argv);
 
 
+function replacer(key,value)
+{
+  const omit = ["end", "start", "loc", "range", "computed", "optional", "sourceType", "raw"];
+  if (omit.includes(key)) return undefined;
+  return value;
+}
+
 function main(code, options) {
   const ast = espree.parse(code, {
     ecmaVersion: espree.latestEcmaVersion
   });
 
-  console.log(JSON.stringify(ast, null, 2))
-  
-  let past = new NodePath(ast);
-  astTypes.visit(past, {
-    visitNode: function (path) {
-      path.cast = {t: path.node.type};
-      if (path.node.operator) {
-        path.cast["op"]= path.node.operator;
-      }
+  let stringast = JSON.stringify(ast, replacer, options.whites);
 
-      this.traverse(path);
-
-      if (path.node.name) {
-        path.cast["name"] = path.node.name;
-      } else if (path.node.value) {
-        path.cast["value"] = path.node.value;
-      }
-      if (path.parentPath) {
-        console.log(path.parentPath.name)
-        if (typeof  path.parentPath.name !== undefined) path.parent.cast[path.parentPath.name] = path.cast;
-        else console.log(`-never ${path.parentPath.name}`)
-  
-
-        
-        if (path.parent.cast.children) path.parent.cast.children.push(path.cast);
-        else path.parent.cast.children = [path.cast];
-      
-      }
-      else return false;
-    }
-  });
-
-  let stringast = util.inspect(past.cast, options);
   if (options?.output) {
     fs.writeFileSync(options.output, stringast);
   } else {
     console.log(stringast)
   }
+  
 }
 
 main()
