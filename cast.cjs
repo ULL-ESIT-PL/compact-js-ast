@@ -57,9 +57,6 @@ program.parse(process.argv);
 
 
 function main(code, options) {
-  //console.log("options=",options)
-  const isSimple = item => Array.isArray(item)|| typeof item === "string" || typeof item === "number";
-
   const ast = espree.parse(code, {
     ecmaVersion: espree.latestEcmaVersion
   });
@@ -67,21 +64,28 @@ function main(code, options) {
   let past = new NodePath(ast);
   astTypes.visit(past, {
     visitNode: function (path) {
-      path.cast = [path.node.type];
+      path.cast = {t: path.node.type};
       if (path.node.operator) {
-        path.cast.push(path.node.operator);
+        path.cast["op"]= path.node.operator;
       }
 
       this.traverse(path);
 
       if (path.node.name) {
-        path.cast.push(path.node.name);
+        path.cast["name"] = path.node.name;
       } else if (path.node.value) {
-        path.cast.push(path.node.value);
+        path.cast["value"] = path.node.value;
       }
-      if (path.parent) {
-        let simpleValues = path.cast.filter(isSimple);
-        path.parent.cast.push(simpleValues)
+      if (path.parentPath) {
+        console.log(path.parentPath.name)
+        if (typeof  path.parentPath.name !== undefined) path.parent.cast[path.parentPath.name] = path.cast;
+        else console.log(`-never ${path.parentPath.name}`)
+  
+
+        
+        if (path.parent.cast.children) path.parent.cast.children.push(path.cast);
+        else path.parent.cast.children = [path.cast];
+      
       }
       else return false;
     }
