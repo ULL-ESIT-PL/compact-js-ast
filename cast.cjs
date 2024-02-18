@@ -61,6 +61,8 @@ function main(code, options) {
     ecmaVersion: espree.latestEcmaVersion
   });
 
+  console.log(JSON.stringify(ast, null, 2))
+  
   let past = new NodePath(ast);
   astTypes.visit(past, {
     visitNode: function (path) {
