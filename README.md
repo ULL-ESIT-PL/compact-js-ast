@@ -103,3 +103,8 @@ body:
         - type: "Literal"
 ```
 
+## See also
+
+- [jq]](https://stedolan.github.io/jq/) is a lightweight and flexible command-line JSON processor. It can be used to filter and transform the output of `compast` to obtain a more compact representation of the AST.
+- [yq]](https://github.com/mikefarah/yq)
+- [jless](https://www.npmjs.com/package/less)
