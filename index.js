@@ -2,7 +2,7 @@ const fs = require('fs');
 const YAML = require('json-to-pretty-yaml');
 const espree = require("espree");
 
-const omit = new Set([
+let omit = new Set([
     "loc",
     "range",
     "start",
@@ -21,6 +21,13 @@ const omit = new Set([
     "errors",
     "error"]);
 
+const location = new Set([
+    "loc",
+    "range",
+    "start",
+    "end",
+]);
+
 function replace(key, value) {
     if (omit.has(key)) return undefined;
     return value;
@@ -30,6 +37,9 @@ module.exports = function (code, options) {
 
     if (options.all) {
         omit.clear();
+    }
+    if (options.location) {
+        omit = location
     }
     options.hide.forEach(element => {
         omit.add(element);

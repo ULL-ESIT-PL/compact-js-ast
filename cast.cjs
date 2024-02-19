@@ -20,6 +20,7 @@ program
   .option("-f --hideFile <fileName>", "File with a line per AST fields to omit")
   .option("-j --json", "output in JSON format (default is YML")
   .option("-a --all", "output all fields")
+  .option("-l --location", "omit only location fields")
   .description("Converts a JS program into a JSON or YML AST format")
   .action((filename, options) => {
     if (options.program) {
