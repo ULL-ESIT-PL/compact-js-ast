@@ -28,6 +28,9 @@ function replace(key, value) {
 
 module.exports = function (code, options) {
 
+    if (options.all) {
+        omit.clear();
+    }
     options.hide.forEach(element => {
         omit.add(element);
     });
