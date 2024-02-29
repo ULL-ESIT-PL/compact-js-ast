@@ -34,7 +34,7 @@ function replace(key, value) {
 }
 
 module.exports = function (code, options, filename) {
-console.log(options)
+    console.log(options)
 
     if (options.all) {
         omit.clear();
@@ -57,8 +57,10 @@ console.log(options)
         }
     }
 
+    if (filename) options.parse = !/\.json$/.test(filename);
+
     let ast;
-    if (options.parse && !/\.json$/.test(filename)) {
+    if (options.parse) {
         ast = espree.parse(code, { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" });
     } else {
         ast = JSON.parse(code);
