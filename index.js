@@ -34,8 +34,7 @@ function replace(key, value) {
 }
 
 module.exports = function (code, options, filename) {
-    console.log(options)
-
+    
     if (options.all) {
         omit.clear();
     }

@@ -7,6 +7,8 @@ a summarized version of the AST of a given JavaScript program. The output can be
 $ compast -h                    
 Usage: cast [options] [filename]
 
+Converts a JS program into a JSON or YML AST format
+
 Arguments:
   filename                    file with the original code
 
@@ -18,8 +20,12 @@ Options:
   -e --hide <fieldnames...>   List of AST fields to omit (default: [])
   -f --hideFile <fileName>    File with a line per AST fields to omit
   -j --json                   output in JSON format (default is YML
+  -n --no-parse               do not parse the code, assume the input is already an AST in json format
+  -a --all                    output all fields
+  -l --location               omit only location fields
   -h, --help                  display help for command
 ```
+
 ## Install
 
 ```
