@@ -41,7 +41,7 @@ module.exports = function (code, options, filename) {
     if (options.location) {
         omit = location
     }
-    options?.hide.forEach(element => {
+    options?.hide?.forEach(element => {
         omit.add(element);
     });
 
