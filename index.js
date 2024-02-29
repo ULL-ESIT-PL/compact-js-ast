@@ -41,7 +41,7 @@ module.exports = function (code, options, filename) {
     if (options.location) {
         omit = location
     }
-    options.hide.forEach(element => {
+    options?.hide.forEach(element => {
         omit.add(element);
     });
 
@@ -61,8 +61,10 @@ module.exports = function (code, options, filename) {
     let ast;
     if (options.parse) {
         ast = espree.parse(code, { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" });
-    } else {
+    } else if (typeof code === "string"){
         ast = JSON.parse(code);
+    } else {
+        ast = code;
     }
     let result = JSON.stringify(ast, replace, options.whites);
     ast = JSON.parse(result);
