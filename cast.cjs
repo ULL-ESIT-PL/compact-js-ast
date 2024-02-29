@@ -19,6 +19,7 @@ program
   .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
   .option("-f --hideFile <fileName>", "File with a line per AST fields to omit")
   .option("-j --json", "output in JSON format (default is YML")
+  .option("-n --no-parse", "do not parse the code, assume the input is already an AST in json format")
   .option("-a --all", "output all fields")
   .option("-l --location", "omit only location fields")
   .description("Converts a JS program into a JSON or YML AST format")
@@ -30,7 +31,7 @@ program
     else if (filename) {
       try {
         let code = fs.readFileSync(filename);
-        main(code, options);
+        main(code, options, filename);
         process.exit(0);
       } catch (e) {
         console.error(e.message);

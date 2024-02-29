@@ -33,7 +33,8 @@ function replace(key, value) {
     return value;
 }
 
-module.exports = function (code, options) {
+module.exports = function (code, options, filename) {
+console.log(options)
 
     if (options.all) {
         omit.clear();
@@ -56,9 +57,12 @@ module.exports = function (code, options) {
         }
     }
 
-    let ast = espree.parse(code, {
-        ecmaVersion: espree.latestEcmaVersion,
-    });
+    let ast;
+    if (options.parse && !/\.json$/.test(filename)) {
+        ast = espree.parse(code, { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" });
+    } else {
+        ast = JSON.parse(code);
+    }
     let result = JSON.stringify(ast, replace, options.whites);
     ast = JSON.parse(result);
     if (options.json) {
