@@ -62,7 +62,9 @@ module.exports = function (code, options, filename) {
     if (options.parse) {
         ast = espree.parse(code, { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" });
     } else if (typeof code === "string"){
+        console.log("parsing json");
         ast = JSON.parse(code);
+        
     } else {
         ast = code;
     }

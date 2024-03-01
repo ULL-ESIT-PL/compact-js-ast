@@ -12,6 +12,7 @@ const {
 
 program
   .version(version)
+  .usage("[options] [filename]")
   .argument("[filename]", 'file with the original code')
   .option("-o, --output <filename>", "file name of the JS input program")
   .option("-p, --program <JS program>", "JS program is given in the command line")
@@ -30,7 +31,7 @@ program
     }
     else if (filename) {
       try {
-        let code = fs.readFileSync(filename);
+        let code = fs.readFileSync(filename, "utf8");
         main(code, options, filename);
         process.exit(0);
       } catch (e) {
