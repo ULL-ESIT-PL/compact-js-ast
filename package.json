@@ -1,6 +1,6 @@
 {
   "name": "compact-js-ast",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "description": "Outputs a compact string representation of the espree AST of a JS input program",
   "main": "index.js",
   "bin": {
