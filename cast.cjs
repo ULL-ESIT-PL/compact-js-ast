@@ -13,7 +13,6 @@ const {
 program
   .version(version)
   .argument("[filename]", 'file with the original code')
-  .option("-o, --output <filename>", "file name of the JS input program")
   .option("-p, --program <JS program>", "JS program is given in the command line")
   .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
   .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
@@ -25,13 +24,13 @@ program
   .description("Converts a JS program into a JSON or YML AST format")
   .action((filename, options) => {
     if (options.program) {
-      main(options.program, options);
+      console.log(main(options.program, options));
       process.exit(0);
     }
     else if (filename) {
       try {
         let code = fs.readFileSync(filename);
-        main(code, options, filename);
+        console.log(main(code, options, filename));
         process.exit(0);
       } catch (e) {
         console.error(e.message);

@@ -69,9 +69,9 @@ module.exports = function (code, options, filename) {
     let result = JSON.stringify(ast, replace, options.whites);
     ast = JSON.parse(result);
     if (options.json) {
-        console.log(result);
+        return result;
     } else {
-        console.log(YAML.stringify(ast));
+        return YAML.stringify(ast);
     }
 
 }
