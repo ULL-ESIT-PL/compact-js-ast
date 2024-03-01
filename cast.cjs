@@ -12,6 +12,7 @@ const {
 
 program
   .version(version)
+  .usage("[options] [filename]")
   .argument("[filename]", 'file with the original code')
   .option("-p, --program <JS program>", "JS program is given in the command line")
   .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
@@ -29,9 +30,8 @@ program
     }
     else if (filename) {
       try {
-        let code = fs.readFileSync(filename);
+        let code = fs.readFileSync(filename, "utf8");
         console.log(main(code, options, filename));
-        process.exit(0);
       } catch (e) {
         console.error(e.message);
         process.exit(1);
