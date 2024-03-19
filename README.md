@@ -111,6 +111,7 @@ body:
 
 ## See also
 
-- [jq]](https://stedolan.github.io/jq/) is a lightweight and flexible command-line JSON processor. It can be used to filter and transform the output of `compast` to obtain a more compact representation of the AST.
-- [yq]](https://github.com/mikefarah/yq)
-- [jless](https://www.npmjs.com/package/less)
+- [astexplorer.net](https://astexplorer.net/) is a web-based tool for exploring the AST of a JavaScript program. It provides a visual representation of the AST and allows to explore the different nodes and their properties.
+- [jq](https://stedolan.github.io/jq/) is a lightweight and flexible command-line JSON processor. It can be used to filter and transform the output of `compast` to obtain a more compact representation of the AST.
+- [yq](https://github.com/mikefarah/yq) is a YAML version of jq
+- [jless](https://www.npmjs.com/package/less) is a command-line JSON viewer that can be used to visualize the output of `compast` in a more readable format.
