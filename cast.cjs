@@ -14,6 +14,7 @@ program
   .version(version)
   .usage("[options] [filename]")
   .argument("[filename]", 'file with the original code')
+  .option("-o, --output <filename>", "file name of the json putput program")
   .option("-p, --program <JS program>", "JS program is given in the command line")
   .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
   .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
@@ -31,7 +32,10 @@ program
     else if (filename) {
       try {
         let code = fs.readFileSync(filename, "utf8");
-        console.log(main(code, options, filename));
+        if (options.output) {
+          fs.writeFileSync(options.output, main(code, options, filename));
+        }
+        else  console.log(main(code, options, filename));
       } catch (e) {
         console.error(e.message);
         process.exit(1);
