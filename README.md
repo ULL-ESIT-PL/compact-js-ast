@@ -14,7 +14,7 @@ Arguments:
 
 Options:
   -V, --version               output the version number
-  -o, --output <filename>     file name of the JS input program
+  -o, --output <filename>     file name of the json output program
   -p, --program <JS program>  JS program is given in the command line
   -jw --whites <string>       string '  ' Specifies the number of whites for formatting the object (default: "  ")
   -e --hide <fieldnames...>   List of AST fields to omit (default: [])

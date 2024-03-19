@@ -14,7 +14,7 @@ program
   .version(version)
   .usage("[options] [filename]")
   .argument("[filename]", 'file with the original code')
-  .option("-o, --output <filename>", "file name of the json putput program")
+  .option("-o, --output <filename>", "file name of the json output program")
   .option("-p, --program <JS program>", "JS program is given in the command line")
   .option("-jw --whites <string>", "string '  ' Specifies the number of whites for formatting the object", '  ')
   .option("-e --hide <fieldnames...>", "List of AST fields to omit", [])
