@@ -1,6 +1,7 @@
 const fs = require('fs');
 const YAML = require('json-to-pretty-yaml');
 const espree = require("espree");
+const babel = require("@babel/core");
 
 let omit = new Set([
     "loc",
@@ -58,9 +59,16 @@ module.exports = function (code, options, filename) {
 
     if (filename) options.parse = !/\.json$/.test(filename);
 
-    let ast;
+    let ast, parse, newOptions;
+    if (options.babel) {
+        parse = babel.parse;
+        newOptions = {}
+    } else {
+        parse = espree.parse;
+        newOptions = { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" }
+    }
     if (options.parse) {
-        ast = espree.parse(code, { ecmaVersion: espree.latestEcmaVersion, sourceType: "module" });
+        ast = parse(code, newOptions);
     } else if (typeof code === "string"){
         ast = JSON.parse(code);        
     } else {

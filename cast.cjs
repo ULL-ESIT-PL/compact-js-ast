@@ -21,6 +21,7 @@ program
   .option("-f --hideFile <fileName>", "File with a line per AST fields to omit")
   .option("-j --json", "output in JSON format (default is YML")
   .option("-n --no-parse", "do not parse the code, assume the input is already an AST in json format")
+  .option("-b --babel", "parse the code with babel (default is espree)")
   .option("-a --all", "output all fields")
   .option("-l --location", "omit only location fields")
   .description("Converts a JS program into a JSON or YML AST format")

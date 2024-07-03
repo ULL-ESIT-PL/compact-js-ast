@@ -1,6 +1,6 @@
 {
   "name": "compact-js-ast",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "description": "Outputs a compact string representation of the espree AST of a JS input program",
   "main": "index.js",
   "bin": {
@@ -10,6 +10,7 @@
     "test": "echo Error: no test specified"
   },
   "dependencies": {
+    "@babel/core": "^7.24.7",
     "commander": "*",
     "espree": "*",
     "json-to-pretty-yaml": "^1.2.2"
