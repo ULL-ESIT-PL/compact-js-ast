@@ -110,6 +110,32 @@ body:
         - type: "Literal"
 ```
 
+Using babel:
+
+`➜  nicolo-howto-talk git:(main) compast -lp 'a?.[0]' | yq '.body[0]'`
+```json
+{
+  "type": "ExpressionStatement",
+  "expression": {
+    "type": "ChainExpression",
+    "expression": {
+      "type": "MemberExpression",
+      "object": {
+        "type": "Identifier",
+        "name": "a"
+      },
+      "property": {
+        "type": "Literal",
+        "value": 0,
+        "raw": "0"
+      },
+      "computed": true,
+      "optional": true
+    }
+  }
+}
+```
+
 ## See also
 
 - [astexplorer.net](https://astexplorer.net/) is a web-based tool for exploring the AST of a JavaScript program. It provides a visual representation of the AST and allows to explore the different nodes and their properties.
