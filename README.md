@@ -112,26 +112,26 @@ body:
 
 Using babel:
 
-`➜  nicolo-howto-talk git:(main) compast -lp 'a?.[0]' | yq '.body[0]'`
+`➜  nicolo-howto-talk git:(main) compast -blp 'a?.[0]' | yq '.program.body[0]'`
 ```json
 {
   "type": "ExpressionStatement",
   "expression": {
-    "type": "ChainExpression",
-    "expression": {
-      "type": "MemberExpression",
-      "object": {
-        "type": "Identifier",
-        "name": "a"
-      },
-      "property": {
-        "type": "Literal",
-        "value": 0,
+    "type": "OptionalMemberExpression",
+    "object": {
+      "type": "Identifier",
+      "name": "a"
+    },
+    "computed": true,
+    "property": {
+      "type": "NumericLiteral",
+      "extra": {
+        "rawValue": 0,
         "raw": "0"
       },
-      "computed": true,
-      "optional": true
-    }
+      "value": 0
+    },
+    "optional": true
   }
 }
 ```
