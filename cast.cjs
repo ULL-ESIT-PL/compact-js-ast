@@ -32,7 +32,12 @@ program
     }
     else if (filename) {
       try {
-        let code = fs.readFileSync(filename, "utf8");
+        let code = null;
+        try { 
+          code = fs.readFileSync(filename, "utf8"); 
+        } catch (e) { 
+           throw new Error(`Could not read file "${filename}"`);
+        }
         if (options.output) {
           fs.writeFileSync(options.output, main(code, options, filename));
         }
